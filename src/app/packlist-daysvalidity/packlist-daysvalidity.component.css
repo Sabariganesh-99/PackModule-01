@@ -1,0 +1,18 @@
+.content {
+    padding: 16px;
+   
+
+}
+.mat-card:hover{
+    background-color: orangered;
+}
+.validity{
+ font-size: 50px;
+ text-align: left;
+ color:black;
+ 
+}
+.matbutton{
+  margin-left: 10px;
+     
+}

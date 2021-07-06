@@ -1,0 +1,28 @@
+.content {
+    padding: 16px;
+   
+
+}
+.mat-card:hover{
+    background-color: orangered;
+}
+.validity{
+ font-size: 50px;
+ text-align: left;
+ color:black;
+ 
+}
+.matbutton{
+  margin-left: 10px;
+     
+}
+.search{
+  margin-block-end: auto;
+}
+.pack{
+  margin-left: 10px;
+  
+}
+.field{
+  background-color: cornflowerblue;
+}
