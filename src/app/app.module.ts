@@ -19,6 +19,7 @@ import { PacklistDaysvalidityComponent } from './packlist-daysvalidity/packlist-
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ViewPackComponent } from './view-pack/view-pack.component';
+import { UpdatePackComponent } from './update-pack/update-pack.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { ViewPackComponent } from './view-pack/view-pack.component';
     PacklistCostComponent,
     PacklistDaysvalidityComponent,
     ViewPackComponent,
+    UpdatePackComponent,
   ],
   imports: [
     BrowserModule,

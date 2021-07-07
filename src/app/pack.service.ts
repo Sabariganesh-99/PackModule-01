@@ -7,6 +7,7 @@ import { Pack } from './pack';
   providedIn: 'root'
 })
 export class PackService {
+  
 
   baseurl = "http://localhost:8083/packs/"
 
@@ -35,5 +36,8 @@ export class PackService {
   }
   deletepack(id:number){
     return this.http.delete(`${this.baseurl}`+"delete/"+id);
+  }
+  updatepack() {
+    //return this.http.put(`${this.baseurl}`+"update/",pack);
   }
 }

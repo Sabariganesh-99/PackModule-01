@@ -8,6 +8,7 @@ import { PacklistComponent } from './packlist/packlist.component';
 import { PacklistCostComponent } from './packlist-cost/packlist-cost.component';
 import { PacklistDaysvalidityComponent } from './packlist-daysvalidity/packlist-daysvalidity.component';
 import { ViewPackComponent } from './view-pack/view-pack.component';
+import { UpdatePackComponent } from './update-pack/update-pack.component';
 
 
 const routes: Routes = [{path:"register", component:RegisterComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [{path:"register", component:RegisterComponent},
                         {path:"packlist",component:PacklistComponent},
                         {path:"cost",component:PacklistCostComponent},
                         {path:"daysvalidity",component:PacklistDaysvalidityComponent},
-                        {path:"viewpack",component:ViewPackComponent}
+                        {path:"viewpack",component:ViewPackComponent},
+                        {path:"updatepack/:id",component:UpdatePackComponent}
                       ];
 
 @NgModule({

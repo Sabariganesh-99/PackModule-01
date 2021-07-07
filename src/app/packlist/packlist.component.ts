@@ -65,9 +65,10 @@ export class PacklistComponent implements OnInit {
   }
   deletepack(id:any){
     console.log("delete pack:"+id);
-    prompt("Are you sure you want to delete this?")
+    //prompt("Are you sure you want to delete this?")
     this.packservice.deletepack(id).subscribe(data =>{this.packDetails = data;(packError: any) => console.log(packError)});
   }
+  
 
 }
 

@@ -19,8 +19,8 @@
                     </mat-card-header>
 
                     <mat-card-content>
-                        <h2 class="id" hidden> {{p.packId}} </h2>
-                        <h2 class="validity">{{p.packValidity}}</h2>
+                        <h2 class="id" hidden> {{p.packId}} </h2> <br>
+                        <p class="validity"> {{p.packValidity}} </p><br>
                         <p>
                             {{p.packDescription}}
                         </p>
@@ -31,6 +31,7 @@
                         </button>
                         <button mat-raised-button color="accent" data-bs-toggle="modal" data-bs-target="#exampleModal"
                             (click)="viewpack(p.packId)"> View Details </button>
+                       
                     </mat-card-actions>
 
                     <div *ngIf="packDetails" class="modal fade" id="exampleModal" tabindex="-1"
@@ -58,8 +59,11 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-danger" (click)=deletepack(packDetails.packId)>
+                                    <button type="button" class="btn btn-danger" (click)=deletepack(packDetails.packId) data-bs-dismiss="modal">
                                         Delete </button>
+                                    <button type="button" class="btn btn-primary"
+                                        routerLink="/updatepack/{{packDetails.packId}}" data-bs-dismiss="modal">
+                                        Update </button>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +89,7 @@
 
             <h3>Enter your {{filterValue}}</h3>
             <input #id type="string" name="id">
-            | 
+            |
             <button class="btn btn-info btn-sm" (click)="GetFilteredValue(id.value)" data-bs-toggle="modal"
                 data-bs-target="#packdetailsmodal2" type="submit"> Get Details</button>
             <div class="col-10" *ngIf="packError">
