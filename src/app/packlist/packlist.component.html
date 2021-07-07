@@ -1,10 +1,13 @@
 <div>
-    <button mat-raised-button class="matbutton" color="warn" routerLink="/cost">
+    <button mat-raised-button class="matbutton" color="warn" data-bs-toggle="tooltip" data-bs-placement="right"
+        title="Sorting the packs based on cost " routerLink="/cost">
         Cost
     </button>
-    <button mat-raised-button class="matbutton" color="warn" routerLink="/daysvalidity">
+    <button mat-raised-button class="matbutton" color="warn" data-bs-toggle="tooltip" data-bs-placement="right"
+        title="Sorting the packs based on  Days Validity" routerLink="/daysvalidity">
         DaysValidity
     </button>
+
     <div class="content">
 
         <div fxLayout="row wrap" fxLayoutGap="16px grid">
@@ -24,57 +27,107 @@
                     </mat-card-content>
                     <mat-card-actions>
                         <button mat-raised-button color="accent">
-                             {{ p.packCost |currency:'INR':'symbol-narrow':'1.2-2'}}
+                            {{ p.packCost |currency:'INR':'symbol-narrow':'1.2-2'}}
                         </button>
-                        <button mat-raised-button color="accent"  (click) = viewpack(p.packId)> View Details </button>
+                        <button mat-raised-button color="accent" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            (click)="viewpack(p.packId)"> View Details </button>
                     </mat-card-actions>
+
+                    <div *ngIf="packDetails" class="modal fade" id="exampleModal" tabindex="-1"
+                        aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel1">Package Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h1>Details of Pack </h1>
+
+                                    <h3>Pack:{{packDetails.packId}}</h3>
+
+                                    <h3>Name: {{packDetails.packName}}</h3>
+
+                                    <h3>Cost: {{packDetails.packCost}}</h3>
+
+                                    <h3>Validity: {{packDetails.packValidity}}</h3>
+
+                                    <h3>Description: {{packDetails.packDescription}}</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" (click)=deletepack(packDetails.packId)>
+                                        Delete </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </mat-card>
             </div>
         </div>
-    </div>
-    <select class="form-select" aria-label="Default select example" [(ngModel)]="filterValue">
-        <option selected value="default">Open this select menu</option>
+        <br>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="filterValue">
+            <option selected value="default">Open this select menu</option>
 
-        <option value="cost">Cost</option>
+            <option value="cost">Cost</option>
 
-        <option value="Pack Name">Pack Name</option>
+            <option value="Pack Name">Pack Name</option>
 
-        <option value="Id">Id</option>
+            <option value="Id">Id</option>
 
-    </select>
-
-
-    <div [style.display]="filterValue ? 'block': 'none'">
-
-        <h3>Enter your {{filterValue}}</h3>
-
-        <input #id type="string" name="id">
-
-        <button class="btn btn-info btn-sm" (click)="GetFilteredValue(id.value)" type="submit">Get Details</button>
-
-    </div>
+        </select>
 
 
-    <br>
-    <br>
-    <div [style.display]=" packDetails ? 'block' : 'none' ">
+        <div [style.display]="filterValue ? 'block': 'none'">
 
 
-        <div *ngIf="packDetails" class="alert alert-info" role="alert">
-
-            <h1>Details of Pack </h1>
-
-            <h3>Pack:{{packDetails.packId}}</h3>
-
-            <h3>Name: {{packDetails.packName}}</h3>
-
-            <h3>Cost: {{packDetails.packCost}}</h3>
-
-            <h3>Validity: {{packDetails.packValidity}}</h3>
-
-            <h3>Description: {{packDetails.packDescription}}</h3>
-
+            <h3>Enter your {{filterValue}}</h3>
+            <input #id type="string" name="id">
+            | 
+            <button class="btn btn-info btn-sm" (click)="GetFilteredValue(id.value)" data-bs-toggle="modal"
+                data-bs-target="#packdetailsmodal2" type="submit"> Get Details</button>
+            <div class="col-10" *ngIf="packError">
+                <span class="text text-danger">{{packError}}</span>
+            </div>
         </div>
 
+
+        <br>
+        <br>
+
+        <div [style.display]=" packDetails ? 'block' : 'none' ">
+            <div *ngIf="packDetails" class="modal fade" id="packdetailsmodal2" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Package Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h1>Details of Pack </h1>
+
+                            <h3>Pack:{{packDetails.packId}}</h3>
+
+                            <h3>Name: {{packDetails.packName}}</h3>
+
+                            <h3>Cost: {{packDetails.packCost}}</h3>
+
+                            <h3>Validity: {{packDetails.packValidity}}</h3>
+
+                            <h3>Description: {{packDetails.packDescription}}</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
     </div>
-</div>

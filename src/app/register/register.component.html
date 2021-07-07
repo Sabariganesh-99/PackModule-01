@@ -1,38 +1,53 @@
 <h2>Come Register with us and get the better experience</h2>
 
 <div class="forms ">
-<form #registerUser = "ngForm"  (ngSubmit)="onSubmit(registerUser.value)">
-  <div class="form-group">
-    <label>First Name</label>
-    <input type="text" class="form-control" id="firstName" ngModel name="firstName">
-  </div>
- 
-  <div class="form-group">
-    <label>Last Name</label>
-    <input type="text" class="form-control" id="lastName" ngModel name="lastName">
-  </div>
- 
-  <div class="form-group">
-    <label>Username</label>
-    <input type="text" class="form-control" id="username" ngModel name="username">
-  </div>
+  <form #registerUser="ngForm" (ngSubmit)="onSubmit(registerUser.value)">
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" class="form-control" id="firstName" ngModel name="firstName">
+    </div>
 
-  <div class="form-group">
+    <div class="col-10" *ngIf="registerError?.firstName">
+      <span class="text text-danger">{{registerError.firstName}}</span>
+    </div>
+
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" id="lastName" ngModel name="lastName">
+    </div>
+
+    <div class="col-10" *ngIf="registerError?.lasttName">
+      <span class="text text-danger">{{registerError.lastName}}</span>
+    </div>
+
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" id="username" ngModel name="username">
+    </div>
+
+    <div class="col-10" *ngIf="registerError?.username">
+      <span class="text text-danger">{{registerError.username}}</span>
+    </div>
+
+    <div class="form-group">
       <label>Email Id</label>
       <input type="email" class="form-control" id="email" ngModel name="email">
     </div>
- 
-  <!-- <div class="form-group">
+
+    <div class="col-10" *ngIf="registerError?.email">
+      <span class="text text-danger">{{registerError.email}}</span>
+    </div>
+
+    <!-- <div class="form-group">
     <label>Mobile</label>
     <input type="number" class="form-control" id="mobile" ngModel name="mobile">
   </div> -->
 
- <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control" id="password" ngModel name="password">
-  </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" id="password" ngModel name="password">
+    </div>
 
-  <button class="btn btn-success" type="submit" >Submit</button>
-</form>
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
 </div>
-

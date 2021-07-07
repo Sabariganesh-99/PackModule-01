@@ -12,7 +12,8 @@ import { PackService } from '../pack.service';
 export class PackComponent implements OnInit {
 
   public pack:Pack = new Pack();
-  public channels:Channel[] = new Array;
+  //public channels:Channel[] = new Array();
+  temp:any;
 
   constructor(public packService:PackService,public router:Router) { }
 
@@ -23,12 +24,17 @@ export class PackComponent implements OnInit {
     this.pack.packCost = value.packCost;
     this.pack.packValidity = value.packValidity;
     this.pack.packDescription = value.packDescription;
-    this.pack.channels.push(value.channels);
+    //this.pack.channels = this.addChannels(value.channels);
+    //console.log(this.pack.channels);
   
 
     this.addPack();
 
   }
+  // addChannels(values:any) :any{
+  //   console.log(values);
+  //   return this.channels = values.split(",");
+  // }
   addPack() {
     this.packService.addPack(this.pack).
     subscribe(data => {console.log(data)},

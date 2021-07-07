@@ -24,13 +24,16 @@ export class PackService {
   fetchPacksByDaysValidity(){
     return this.http.get(`${this.baseurl}`+"daysvalidity");
   }
-  getPackById(id:number){
-    return this.http.get(`${this.baseurl}`+"getPackById/"+id);
+  getPackById(id:number):Observable<Pack>{
+    return this.http.get<Pack>(`${this.baseurl}`+"getPackById/"+id);
   }
   getPackByName(name:string){
     return this.http.get(`${this.baseurl}`+"getPackByName/"+name);
   }
   getPacksByAmount(amount:number):Observable<Pack[]>{
     return this.http.get<Pack[]>(`${this.baseurl}`+"amount/?amount="+amount);
+  }
+  deletepack(id:number){
+    return this.http.delete(`${this.baseurl}`+"delete/"+id);
   }
 }

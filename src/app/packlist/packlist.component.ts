@@ -13,6 +13,7 @@ export class PacklistComponent implements OnInit {
   public packs: Pack[] = [];
   public packDetails: Pack | any;
   public color = "accent";
+  public packError: Pack = new Pack();
 
   filterValue: string = "";
   packsByCost: Pack[] = [];
@@ -46,20 +47,26 @@ export class PacklistComponent implements OnInit {
   }
   filterByCost(cost: number) {
     console.log(cost);
-    this.packservice.getPacksByAmount(cost).subscribe(data => { this.packs = data; console.log(data) });
+    this.packservice.getPacksByAmount(cost).subscribe(data => { this.packs = data; console.log(data),(packError: any) => console.log(packError.error) });
 
   }
   filterByPackName(name: string) {
     console.log(name);
-    this.packservice.getPackByName(name).subscribe(data => { this.packDetails = data; console.log(data) });
+    this.packservice.getPackByName(name).subscribe(data => { this.packDetails = data; console.log(data),(packError: any) => console.log(packError.error) });
   }
   filterByPackId(id: number) {
     console.log(id);
-    this.packservice.getPackById(id).subscribe(data => { this.packDetails = data; console.log(data) });
+    this.packservice.getPackById(id).subscribe(data => { this.packDetails = data; console.log(data)
+    } , error => { this.packError = error.error;console.log(this.packError)});
   }
   viewpack(id:any){
     console.log(id);
-    this.router.navigate(['/viewpack'],id);
+    this.packservice.getPackById(id).subscribe(data => { this.packDetails = data; console.log(data),(packError: any) => console.log(packError) });
+  }
+  deletepack(id:any){
+    console.log("delete pack:"+id);
+    prompt("Are you sure you want to delete this?")
+    this.packservice.deletepack(id).subscribe(data =>{this.packDetails = data;(packError: any) => console.log(packError)});
   }
 
 }
