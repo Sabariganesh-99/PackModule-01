@@ -31,7 +31,7 @@
                         </button>
                         <button mat-raised-button color="accent" data-bs-toggle="modal" data-bs-target="#exampleModal"
                             (click)="viewpack(p.packId)"> View Details </button>
-                       
+
                     </mat-card-actions>
 
                     <div *ngIf="packDetails" class="modal fade" id="exampleModal" tabindex="-1"
@@ -59,7 +59,8 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-danger" (click)=deletepack(packDetails.packId) data-bs-dismiss="modal">
+                                    <button type="button" class="btn btn-danger" (click)=deletepack(packDetails.packId)
+                                        data-bs-dismiss="modal">
                                         Delete </button>
                                     <button type="button" class="btn btn-primary"
                                         routerLink="/updatepack/{{packDetails.packId}}" data-bs-dismiss="modal">
@@ -93,45 +94,46 @@
             <button class="btn btn-info btn-sm" (click)="GetFilteredValue(id.value)" data-bs-toggle="modal"
                 data-bs-target="#packdetailsmodal2" type="submit"> Get Details</button>
             <div class="col-10" *ngIf="packError">
-                <span class="text text-danger">{{packError}}</span>
+                <span class="text text-danger"> {{packError}}</span>
             </div>
-        </div>
+            <br>
+            <br>
+            <div [style.display]=" packDetails ? 'block' : 'none' ">
+                <div *ngIf="packDetails" class="modal fade" id="packdetailsmodal2" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Package Details</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
 
+                                <h1>Details of Pack </h1>
 
-        <br>
-        <br>
+                                <h3>Pack:{{packDetails.packId}}</h3>
 
-        <div [style.display]=" packDetails ? 'block' : 'none' ">
-            <div *ngIf="packDetails" class="modal fade" id="packdetailsmodal2" tabindex="-1"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Package Details</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <h1>Details of Pack </h1>
+                                <h3>Name: {{packDetails.packName}}</h3>
 
-                            <h3>Pack:{{packDetails.packId}}</h3>
+                                <h3>Cost: {{packDetails.packCost}}</h3>
 
-                            <h3>Name: {{packDetails.packName}}</h3>
+                                <h3>Validity: {{packDetails.packValidity}}</h3>
 
-                            <h3>Cost: {{packDetails.packCost}}</h3>
-
-                            <h3>Validity: {{packDetails.packValidity}}</h3>
-
-                            <h3>Description: {{packDetails.packDescription}}</h3>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                                <h3>Description: {{packDetails.packDescription}}</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-
         </div>
+
+
     </div>
+</div>

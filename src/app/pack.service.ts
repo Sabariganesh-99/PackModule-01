@@ -37,7 +37,8 @@ export class PackService {
   deletepack(id:number){
     return this.http.delete(`${this.baseurl}`+"delete/"+id);
   }
-  updatepack() {
-    //return this.http.put(`${this.baseurl}`+"update/",pack);
+  updatepack(pack:Pack) {
+    console.log("afterupdate:"+pack);
+    return this.http.put(`${this.baseurl}`+`updatepack`,pack);
   }
 }

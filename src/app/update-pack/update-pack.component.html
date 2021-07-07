@@ -1,1 +1,29 @@
-<p>update-pack works!</p>
+<h2>Create Pack</h2>
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Packname</label>
+    <input type="text" class="form-control" id="packName" [(ngModel)]="pack.packName" name="packName">
+  </div>
+ 
+  <div class="form-group">
+    <label>Packcost</label>
+    <input type="text" class="form-control" id="packCost" [(ngModel)]="pack.packCost" name="packCost">
+  </div>
+ 
+  <div class="form-group">
+    <label>Pack validity</label>
+    <input type="text" class="form-control" id="packValidity" [(ngModel)]="pack.packValidity" name="packValidity">
+  </div>
+ 
+  <div class="form-group">
+    <label>Description</label>
+    <input type="text" class="form-control" id="packDescription" [(ngModel)]="pack.packDescription" name="packDescription">
+  </div>
+
+  <!-- <div class="form-group">
+    <label>Channels</label>
+    <input type="text" class="form-control" id="channels" ngModel name="channels">
+  </div> -->
+ 
+  <button class="btn btn-success" type="submit" >Submit</button>
+</form>
